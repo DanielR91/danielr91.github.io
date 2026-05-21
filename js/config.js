@@ -98,8 +98,8 @@ const config = {
       url: 'https://danielr91.github.io/OSINT_Leak_Monitor/',
       githubUrl: 'https://github.com/danielr91/OSINT_Leak_Monitor',
       description: 'Interactive intelligence scanner identifying exposed enterprise domains, open ports, leaked emails, and compromised credentials.',
-      workflowFile: 'pages-build-deployment', // Built-in Pages Deployment
-      workflowName: 'pages-build-deployment',
+      workflowFile: 'pages/pages-build-deployment', // Built-in Pages Deployment
+      workflowName: 'Update OSINT Methodology',
       telemetry: {
         rawUrl: null, // Hardcoded fallback metrics for this scanner app
         parse: () => ({

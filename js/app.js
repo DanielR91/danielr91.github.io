@@ -74,13 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (repo.id === 'conflict_tracker') { tagClass = 'tag-cyan'; accentClass = 'text-cyan'; }
       
       // Construct Workflow status badge URL using Shields.io for custom label injection
-      let badgeUrl;
-      if (repo.workflowFile === 'pages-build-deployment') {
-        badgeUrl = `https://github.com/${config.githubUsername}/${repo.repoName}/actions/workflows/pages/${repo.workflowFile}/badge.svg`;
-      } else {
-        const labelParam = encodeURIComponent(repo.workflowName);
-        badgeUrl = `https://img.shields.io/github/actions/workflow/status/${config.githubUsername}/${repo.repoName}/${repo.workflowFile}?label=${labelParam}`;
-      }
+      const labelParam = encodeURIComponent(repo.workflowName);
+      const badgeUrl = `https://img.shields.io/github/actions/workflow/status/${config.githubUsername}/${repo.repoName}/${repo.workflowFile}?label=${labelParam}`;
 
       // Header row
       let headerHTML = `
