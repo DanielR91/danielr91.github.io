@@ -27,6 +27,10 @@
   --neon-purple-dim: rgba(213, 0, 249, 0.15);
   --neon-purple-glow: rgba(213, 0, 249, 0.4);
   
+  --neon-pink: #ff2a8b;
+  --neon-pink-dim: rgba(255, 42, 139, 0.15);
+  --neon-pink-glow: rgba(255, 42, 139, 0.4);
+  
   --border-color: rgba(0, 229, 255, 0.12);
   --border-glow-color: rgba(0, 229, 255, 0.25);
   
@@ -361,6 +365,7 @@ body {
 .tag-green { background: var(--neon-green-dim); color: var(--neon-green); border: 1px solid var(--neon-green); }
 .tag-red { background: var(--neon-red-dim); color: var(--neon-red); border: 1px solid var(--neon-red); }
 .tag-purple { background: var(--neon-purple-dim); color: var(--neon-purple); border: 1px solid var(--neon-purple); }
+.tag-pink { background: var(--neon-pink-dim); color: var(--neon-pink); border: 1px solid var(--neon-pink); }
 
 .card-description {
   font-size: 0.75rem;
@@ -616,6 +621,7 @@ body {
 .bg-green { background-color: var(--neon-green); box-shadow: 0 0 4px var(--neon-green); }
 .bg-red { background-color: var(--neon-red); box-shadow: 0 0 4px var(--neon-red); }
 .bg-purple { background-color: var(--neon-purple); box-shadow: 0 0 4px var(--neon-purple); }
+.bg-pink { background-color: var(--neon-pink); box-shadow: 0 0 4px var(--neon-pink); }
 
 .chart-wrapper {
   position: relative;
@@ -749,11 +755,14 @@ body {
 .text-amber { color: var(--neon-amber) !important; }
 .text-red { color: var(--neon-red) !important; }
 .text-purple { color: var(--neon-purple) !important; }
+.text-pink { color: var(--neon-pink) !important; }
 .glow-cyan { filter: drop-shadow(0 0 4px var(--neon-cyan)); }
 .glow-purple { filter: drop-shadow(0 0 4px var(--neon-purple)); }
+.glow-pink { filter: drop-shadow(0 0 4px var(--neon-pink)); }
 .glow-cyan-hover:hover { border-color: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan-dim); }
 .glow-amber-hover:hover { border-color: var(--neon-amber); box-shadow: 0 0 10px var(--neon-amber-dim); }
 .glow-purple-hover:hover { border-color: var(--neon-purple); box-shadow: 0 0 10px var(--neon-purple-dim); }
+.glow-pink-hover:hover { border-color: var(--neon-pink); box-shadow: 0 0 10px var(--neon-pink-dim); }
 
 /* Custom Animations */
 @keyframes scanlineAnimation {

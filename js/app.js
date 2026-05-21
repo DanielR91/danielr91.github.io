@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (repo.id === 'infostealer_tracker') { tagClass = 'tag-amber'; accentClass = 'text-amber'; }
       if (repo.id === 'cve_prioritiser') { tagClass = 'tag-purple'; accentClass = 'text-purple'; }
       if (repo.id === 'conflict_tracker') { tagClass = 'tag-cyan'; accentClass = 'text-cyan'; }
+      if (repo.id === 'osint_leak_monitor') { tagClass = 'tag-pink'; accentClass = 'text-pink'; }
       
       // Construct Workflow status badge URL using Shields.io for custom label injection
       const labelParam = encodeURIComponent(repo.workflowName);
