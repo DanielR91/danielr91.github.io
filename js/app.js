@@ -63,17 +63,20 @@ document.addEventListener('DOMContentLoaded', () => {
     config.repositories.forEach(repo => {
       const state = repoDataState[repo.id];
       const card = document.createElement('div');
-      card.className = 'glass-panel tracker-card';
       
-      // Determine glow state / tag color
+      // Determine glow state / tag color / button accent
       let tagClass = 'tag-cyan';
       let accentClass = 'text-cyan';
-      if (repo.id === 'ransomware_tracker') { tagClass = 'tag-red'; accentClass = 'text-red'; }
-      if (repo.id === 'cyware_replacement') { tagClass = 'tag-green'; accentClass = 'text-green'; }
-      if (repo.id === 'infostealer_tracker') { tagClass = 'tag-amber'; accentClass = 'text-amber'; }
-      if (repo.id === 'cve_prioritiser') { tagClass = 'tag-purple'; accentClass = 'text-purple'; }
-      if (repo.id === 'conflict_tracker') { tagClass = 'tag-cyan'; accentClass = 'text-cyan'; }
-      if (repo.id === 'osint_leak_monitor') { tagClass = 'tag-pink'; accentClass = 'text-pink'; }
+      let glowClass = 'glow-cyan-hover';
+      let btnClass = 'btn-cyan';
+      if (repo.id === 'ransomware_tracker') { tagClass = 'tag-red'; accentClass = 'text-red'; glowClass = 'glow-red-hover'; btnClass = 'btn-red'; }
+      if (repo.id === 'cyware_replacement') { tagClass = 'tag-green'; accentClass = 'text-green'; glowClass = 'glow-green-hover'; btnClass = 'btn-green'; }
+      if (repo.id === 'infostealer_tracker') { tagClass = 'tag-amber'; accentClass = 'text-amber'; glowClass = 'glow-amber-hover'; btnClass = 'btn-amber'; }
+      if (repo.id === 'cve_prioritiser') { tagClass = 'tag-purple'; accentClass = 'text-purple'; glowClass = 'glow-purple-hover'; btnClass = 'btn-purple'; }
+      if (repo.id === 'conflict_tracker') { tagClass = 'tag-cyan'; accentClass = 'text-cyan'; glowClass = 'glow-cyan-hover'; btnClass = 'btn-cyan'; }
+      if (repo.id === 'osint_leak_monitor') { tagClass = 'tag-pink'; accentClass = 'text-pink'; glowClass = 'glow-pink-hover'; btnClass = 'btn-pink'; }
+      
+      card.className = `glass-panel tracker-card ${glowClass}`;
       
       // Construct Workflow status badge URL using Shields.io for custom label injection
       const labelParam = encodeURIComponent(repo.workflowName);
@@ -117,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <a href="${repo.githubUrl}" target="_blank" rel="noopener noreferrer" class="action-btn secondary">
             <i data-lucide="github" class="btn-icon"></i> CODEBASE
           </a>
-          <a href="${repo.url}" target="_blank" rel="noopener noreferrer" class="action-btn primary">
+          <a href="${repo.url}" target="_blank" rel="noopener noreferrer" class="action-btn primary ${btnClass}">
             <i data-lucide="external-link" class="btn-icon"></i> LAUNCH APP
           </a>
         </div>
@@ -314,12 +317,12 @@ document.addEventListener('DOMContentLoaded', () => {
           {
             label: 'Ransomware Victims',
             data: window.chartData.ransomwareVictims,
-            borderColor: '#00e5ff',
+            borderColor: '#ff1744',
             borderWidth: 2,
-            pointBackgroundColor: '#00e5ff',
+            pointBackgroundColor: '#ff1744',
             pointHoverRadius: 6,
             fill: true,
-            backgroundColor: gradientCyan,
+            backgroundColor: gradientRed,
             tension: 0.35
           },
           {
@@ -347,12 +350,12 @@ document.addEventListener('DOMContentLoaded', () => {
           {
             label: 'Conflict Intel',
             data: window.chartData.criticalCves,
-            borderColor: '#ff1744',
+            borderColor: '#00e5ff',
             borderWidth: 2,
-            pointBackgroundColor: '#ff1744',
+            pointBackgroundColor: '#00e5ff',
             pointHoverRadius: 6,
             fill: true,
-            backgroundColor: gradientRed,
+            backgroundColor: gradientCyan,
             tension: 0.35
           },
           {
