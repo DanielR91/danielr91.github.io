@@ -75,6 +75,7 @@ const config = {
       repoName: 'CVE_Prioritiser',
       url: 'https://danielr91.github.io/CVE_Prioritiser/',
       githubUrl: 'https://github.com/DanielR91/CVE_Prioritiser',
+      tagLabel: 'Vulnerability Intelligence',
       description: 'Prioritizes enterprise vulnerability patching by correlating CVSS severity with EPSS exploit probability and CISA KEV active exploitation.',
       workflowFile: 'update-data.yml',
       workflowName: 'Update Vulnerability Data',
