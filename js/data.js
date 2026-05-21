@@ -24,6 +24,11 @@ const fallbackData = {
     'Stealer Victims': '2,462',
     'Last Update Time': '07:54:26 AM'
   },
+  cve_prioritiser: {
+    'Total CVEs Tracked': '2,832',
+    'Confirmed Exploited': '1,599',
+    'Immediate Patch Required': '1,599'
+  },
   osint_leak_monitor: {
     'Scans Executed': '142',
     'Ports Scanned': '5 Common Ports',
@@ -38,7 +43,8 @@ const chartData = {
   ransomwareVictims: [2410, 2890, 3105, 3450, 3120, 2833],
   infostealerVictims: [1210, 1430, 1720, 1950, 2180, 2462],
   criticalCves: [12, 19, 15, 22, 18, 25],
-  intelArticles: [230, 280, 340, 390, 440, 500]
+  intelArticles: [230, 280, 340, 390, 440, 500],
+  cisaKev: [1320, 1380, 1420, 1480, 1530, 1599]
 };
 
 // Simulated security operations logs for the live ticker

@@ -23,6 +23,10 @@
   --neon-red-dim: rgba(255, 23, 68, 0.15);
   --neon-red-glow: rgba(255, 23, 68, 0.4);
   
+  --neon-purple: #d500f9;
+  --neon-purple-dim: rgba(213, 0, 249, 0.15);
+  --neon-purple-glow: rgba(213, 0, 249, 0.4);
+  
   --border-color: rgba(0, 229, 255, 0.12);
   --border-glow-color: rgba(0, 229, 255, 0.25);
   
@@ -356,6 +360,7 @@ body {
 .tag-amber { background: var(--neon-amber-dim); color: var(--neon-amber); border: 1px solid var(--neon-amber); }
 .tag-green { background: var(--neon-green-dim); color: var(--neon-green); border: 1px solid var(--neon-green); }
 .tag-red { background: var(--neon-red-dim); color: var(--neon-red); border: 1px solid var(--neon-red); }
+.tag-purple { background: var(--neon-purple-dim); color: var(--neon-purple); border: 1px solid var(--neon-purple); }
 
 .card-description {
   font-size: 0.75rem;
@@ -610,6 +615,7 @@ body {
 .bg-amber { background-color: var(--neon-amber); box-shadow: 0 0 4px var(--neon-amber); }
 .bg-green { background-color: var(--neon-green); box-shadow: 0 0 4px var(--neon-green); }
 .bg-red { background-color: var(--neon-red); box-shadow: 0 0 4px var(--neon-red); }
+.bg-purple { background-color: var(--neon-purple); box-shadow: 0 0 4px var(--neon-purple); }
 
 .chart-wrapper {
   position: relative;
@@ -742,9 +748,12 @@ body {
 .text-green { color: var(--neon-green) !important; }
 .text-amber { color: var(--neon-amber) !important; }
 .text-red { color: var(--neon-red) !important; }
+.text-purple { color: var(--neon-purple) !important; }
 .glow-cyan { filter: drop-shadow(0 0 4px var(--neon-cyan)); }
+.glow-purple { filter: drop-shadow(0 0 4px var(--neon-purple)); }
 .glow-cyan-hover:hover { border-color: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan-dim); }
 .glow-amber-hover:hover { border-color: var(--neon-amber); box-shadow: 0 0 10px var(--neon-amber-dim); }
+.glow-purple-hover:hover { border-color: var(--neon-purple); box-shadow: 0 0 10px var(--neon-purple-dim); }
 
 /* Custom Animations */
 @keyframes scanlineAnimation {

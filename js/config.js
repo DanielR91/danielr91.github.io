@@ -3,25 +3,6 @@ const config = {
   githubUsername: 'danielr91',
   repositories: [
     {
-      id: 'ransomware_tracker',
-      name: 'Ransomware Tracker',
-      repoName: 'Yet_Another_Ransomware_Tracker',
-      url: 'https://danielr91.github.io/Yet_Another_Ransomware_Tracker/index.html',
-      githubUrl: 'https://github.com/danielr91/Yet_Another_Ransomware_Tracker',
-      description: 'Central intelligence feed scraping and aggregating active ransomware gang leak sites, victims, and negotiations in real-time.',
-      workflowFile: 'update_data.yml',
-      workflowName: 'Update Ransomware Feed',
-      telemetry: {
-        rawUrl: 'https://raw.githubusercontent.com/danielr91/Yet_Another_Ransomware_Tracker/main/data/stats.json',
-        parse: (data) => ({
-          'Groups Tracked': data.stats?.groups || 345,
-          'Total Victims': data.stats?.victims?.toLocaleString() || '28,332',
-          'Press Releases': data.stats?.press?.toLocaleString() || '3,577',
-          'Last Intel Sync': data.last_update ? new Date(data.last_update).toLocaleTimeString() : 'N/A'
-        })
-      }
-    },
-    {
       id: 'cyware_replacement',
       name: 'Cyware Social Replacement',
       repoName: 'Cyware_Social_Replacement',
@@ -45,26 +26,22 @@ const config = {
       }
     },
     {
-      id: 'conflict_tracker',
-      name: 'Middle East Conflict Tracker',
-      repoName: 'Middle_East_Conflict_Tracker',
-      url: 'https://danielr91.github.io/Middle_East_Conflict_Tracker/',
-      githubUrl: 'https://github.com/danielr91/Middle_East_Conflict_Tracker',
-      description: 'Monitors exploit intelligence and critical vulnerabilities targeting entities in the Middle East region with real-time severity ratings.',
-      workflowFile: 'update-data.yml',
-      workflowName: 'Update Conflict Intelligence',
+      id: 'ransomware_tracker',
+      name: 'Ransomware Tracker',
+      repoName: 'Yet_Another_Ransomware_Tracker',
+      url: 'https://danielr91.github.io/Yet_Another_Ransomware_Tracker/index.html',
+      githubUrl: 'https://github.com/danielr91/Yet_Another_Ransomware_Tracker',
+      description: 'Central intelligence feed scraping and aggregating active ransomware gang leak sites, victims, and negotiations in real-time.',
+      workflowFile: 'update_data.yml',
+      workflowName: 'Update Ransomware Feed',
       telemetry: {
-        rawUrl: 'https://raw.githubusercontent.com/danielr91/Middle_East_Conflict_Tracker/main/data/middle_east_cves.json',
-        parse: (data) => {
-          const cves = Array.isArray(data) ? data : [];
-          const criticalCount = cves.filter(c => c.severity === 'Critical').length;
-          return {
-            'CVEs Monitored': cves.length || 5,
-            'Threat Actors': criticalCount || 2,
-            'Systems Exposed': [...new Set(cves.map(c => c.system))].length || 4,
-            'Target Region': 'Middle East'
-          };
-        }
+        rawUrl: 'https://raw.githubusercontent.com/danielr91/Yet_Another_Ransomware_Tracker/main/data/stats.json',
+        parse: (data) => ({
+          'Groups Tracked': data.stats?.groups || 345,
+          'Total Victims': data.stats?.victims?.toLocaleString() || '28,332',
+          'Press Releases': data.stats?.press?.toLocaleString() || '3,577',
+          'Last Intel Sync': data.last_update ? new Date(data.last_update).toLocaleTimeString() : 'N/A'
+        })
       }
     },
     {
@@ -87,6 +64,50 @@ const config = {
             'Aggregated Victims': totalVictims?.toLocaleString() || '4,510',
             'Stealer Victims': stealerVictims?.toLocaleString() || '467',
             'Last Update Time': data.last_update ? new Date(data.last_update).toLocaleTimeString() : 'N/A'
+          };
+        }
+      }
+    },
+    {
+      id: 'cve_prioritiser',
+      name: 'CVE Prioritiser',
+      repoName: 'CVE_Prioritiser',
+      url: 'https://danielr91.github.io/CVE_Prioritiser/',
+      githubUrl: 'https://github.com/DanielR91/CVE_Prioritiser',
+      description: 'Prioritizes enterprise vulnerability patching by correlating CVSS severity with EPSS exploit probability and CISA KEV active exploitation.',
+      workflowFile: 'update_data.yml',
+      workflowName: 'Update Vulnerability Data',
+      telemetry: {
+        rawUrl: 'https://raw.githubusercontent.com/DanielR91/CVE_Prioritiser/main/src/data/cve-data.json',
+        parse: (data) => {
+          const stats = data.stats || {};
+          return {
+            'Total CVEs Tracked': stats.total_cve_count?.toLocaleString() || '2,832',
+            'Confirmed Exploited': stats.confirmed_exploited?.toLocaleString() || '1,599',
+            'Immediate Patch Required': stats.immediate_patch?.toLocaleString() || '1,599'
+          };
+        }
+      }
+    },
+    {
+      id: 'conflict_tracker',
+      name: 'Middle East Conflict Tracker',
+      repoName: 'Middle_East_Conflict_Tracker',
+      url: 'https://danielr91.github.io/Middle_East_Conflict_Tracker/',
+      githubUrl: 'https://github.com/danielr91/Middle_East_Conflict_Tracker',
+      description: 'Monitors exploit intelligence and critical vulnerabilities targeting entities in the Middle East region with real-time severity ratings.',
+      workflowFile: 'update-data.yml',
+      workflowName: 'Update Conflict Intelligence',
+      telemetry: {
+        rawUrl: 'https://raw.githubusercontent.com/danielr91/Middle_East_Conflict_Tracker/main/data/middle_east_cves.json',
+        parse: (data) => {
+          const cves = Array.isArray(data) ? data : [];
+          const criticalCount = cves.filter(c => c.severity === 'Critical').length;
+          return {
+            'CVEs Monitored': cves.length || 5,
+            'Threat Actors': criticalCount || 2,
+            'Systems Exposed': [...new Set(cves.map(c => c.system))].length || 4,
+            'Target Region': 'Middle East'
           };
         }
       }

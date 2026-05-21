@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (repo.id === 'ransomware_tracker') { tagClass = 'tag-red'; accentClass = 'text-red'; }
       if (repo.id === 'cyware_replacement') { tagClass = 'tag-green'; accentClass = 'text-green'; }
       if (repo.id === 'infostealer_tracker') { tagClass = 'tag-amber'; accentClass = 'text-amber'; }
+      if (repo.id === 'cve_prioritiser') { tagClass = 'tag-purple'; accentClass = 'text-purple'; }
       if (repo.id === 'conflict_tracker') { tagClass = 'tag-cyan'; accentClass = 'text-cyan'; }
       
       // Construct Workflow status badge URL using Shields.io for custom label injection
@@ -223,6 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
     repoDataState['conflict_tracker'].lastUpdate = new Date(now.getTime() - 2.5 * 60 * 60 * 1000);
     // Infostealer - synced 3 hours ago
     repoDataState['infostealer_tracker'].lastUpdate = new Date("2026-05-21T07:54:26.969Z");
+    // CVE Prioritiser - synced 1.5 hours ago
+    repoDataState['cve_prioritiser'].lastUpdate = new Date(now.getTime() - 1.5 * 60 * 60 * 1000);
     // OSINT - static deploy 1 day ago
     repoDataState['osint_leak_monitor'].lastUpdate = new Date(now.getTime() - 28 * 60 * 60 * 1000);
   }
@@ -233,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (id === 'cyware_replacement') repoDataState[id].lastUpdate = new Date("2026-05-21T09:57:00.086Z");
     else if (id === 'infostealer_tracker') repoDataState[id].lastUpdate = new Date("2026-05-21T07:54:26.969Z");
     else if (id === 'conflict_tracker') repoDataState[id].lastUpdate = new Date(now.getTime() - 3.2 * 60 * 60 * 1000);
+    else if (id === 'cve_prioritiser') repoDataState[id].lastUpdate = new Date(now.getTime() - 1.5 * 60 * 60 * 1000);
     else repoDataState[id].lastUpdate = new Date(now.getTime() - 24 * 60 * 60 * 1000);
   }
 
@@ -261,12 +265,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Conflict - middle_east_cves.json length (multiply by 5 to match visual scale on chart)
     const liveConflictVal = repoDataState['conflict_tracker'].metrics['CVEs Monitored'] || 5;
     const conflictNum = (parseInt(liveConflictVal) || 5) * 5;
+    // CISA KEV - cve-data.json has confirmed_exploited
+    const liveCisaKevVal = repoDataState['cve_prioritiser'].metrics['Confirmed Exploited'] || '1,599';
+    const cisaKevNum = parseInt(String(liveCisaKevVal).replace(/,/g, '')) || 1599;
 
     // Update the last data point in the chart (index 5 represents current month)
     threatChart.data.datasets[0].data[5] = Math.round(ransomwareNum / 10); // Ransomware (scaled)
     threatChart.data.datasets[1].data[5] = infostealerNum;                 // Infostealer
     threatChart.data.datasets[2].data[5] = articlesNum;                   // Articles Ingested
     threatChart.data.datasets[3].data[5] = conflictNum;                   // Conflict Intel (scaled)
+    threatChart.data.datasets[4].data[5] = cisaKevNum;                     // CISA KEV
     
     threatChart.update();
     addLogEntry('INFO', 'CHART_ENGINE', 'Sync timeline graph updated with live telemetry points.');
@@ -292,6 +300,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const gradientRed = ctx.createLinearGradient(0, 0, 0, 200);
     gradientRed.addColorStop(0, 'rgba(255, 23, 68, 0.4)');
     gradientRed.addColorStop(1, 'rgba(255, 23, 68, 0.0)');
+
+    const gradientPurple = ctx.createLinearGradient(0, 0, 0, 200);
+    gradientPurple.addColorStop(0, 'rgba(213, 0, 249, 0.4)');
+    gradientPurple.addColorStop(1, 'rgba(213, 0, 249, 0.0)');
 
     threatChart = new Chart(ctx, {
       type: 'line',
@@ -340,6 +352,17 @@ document.addEventListener('DOMContentLoaded', () => {
             pointHoverRadius: 6,
             fill: true,
             backgroundColor: gradientRed,
+            tension: 0.35
+          },
+          {
+            label: 'CISA KEV',
+            data: window.chartData.cisaKev,
+            borderColor: '#d500f9',
+            borderWidth: 2,
+            pointBackgroundColor: '#d500f9',
+            pointHoverRadius: 6,
+            fill: true,
+            backgroundColor: gradientPurple,
             tension: 0.35
           }
         ]
