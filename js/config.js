@@ -8,6 +8,7 @@ const config = {
       repoName: 'Cyware_Social_Replacement',
       url: 'https://danielr91.github.io/Cyware_Social_Replacement/#',
       githubUrl: 'https://github.com/danielr91/Cyware_Social_Replacement',
+      tagLabel: 'Threat Intelligence',
       description: 'Automated aggregator fetching, parsing, and tagging cyber threat intelligence articles and advisory feeds from major cybersecurity publishers.',
       workflowFile: 'update-feed.yml',
       workflowName: 'Update Cyber Intel Feed',

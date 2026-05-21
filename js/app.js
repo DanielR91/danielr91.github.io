@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="card-title-block">
             <div class="card-title-row">
               <h3>${repo.name}</h3>
-              <span class="card-tag ${tagClass}">${repo.id.split('_')[0]}</span>
+              <span class="card-tag ${tagClass}">${repo.tagLabel || repo.id.split('_')[0]}</span>
             </div>
             <p class="card-description">${repo.description}</p>
           </div>
