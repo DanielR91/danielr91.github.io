@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intel Hub | CTI Command Center</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Central Cyber Threat Intelligence (CTI) portal aggregating ransomware, infostealer, CVE, and OSINT telemetry trackers in real-time.">
+  <meta name="keywords" content="CTI, Cyber Threat Intelligence, Ransomware Tracker, Infostealer, OSINT, Threat Map, Cyber Ops">
+  <meta name="author" content="DanielR91">
+  
+  <!-- Fonts: Orbitron for tech titles, JetBrains Mono for logs/stats -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Orbitron:wght@400;600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Tech Grid Background Pattern -->
+  <div class="grid-overlay"></div>
+  <div class="scanline"></div>
+
+  <!-- HUD Container -->
+  <div class="hud-container">
+    
+    <!-- Top Header Bar -->
+    <header class="hud-header">
+      <div class="hud-logo">
+        <i data-lucide="shield-alert" class="logo-icon glow-cyan"></i>
+        <div class="logo-text">
+          <h1>INTEL HUB</h1>
+          <span class="logo-sub">CTI Command Center // Terminal Portal</span>
+        </div>
+      </div>
+      
+      <!-- System Telemetry Status -->
+      <div class="hud-status">
+        <span class="status-label">GLOBAL SCANNER STATE:</span>
+        <div class="status-badge pulse-green">
+          <span class="dot"></span>
+          <span class="text">ONLINE // ACTIVE</span>
+        </div>
+      </div>
+
+      <!-- Live Chronometer Counters -->
+      <div class="hud-clocks">
+        <div class="clock-item">
+          <span class="clock-label">SYS_UTC</span>
+          <span id="utc-clock" class="clock-time">00:00:00 UTC</span>
+        </div>
+        <div class="clock-item">
+          <span class="clock-label">SYS_LOC</span>
+          <span id="local-clock" class="clock-time">00:00:00 LOC</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="hud-main-grid">
+      
+      <!-- LEFT SECTION: The 5 CTI Tracker Cards -->
+      <section class="tracker-section">
+        <div class="section-header">
+          <i data-lucide="layout-grid" class="section-icon"></i>
+          <h2>CTI AUTOMATED TRACKERS</h2>
+          <span class="divider"></span>
+        </div>
+        
+        <div class="tracker-cards-grid" id="tracker-cards-container">
+          <!-- Dynamically populated via JS -->
+          <div class="loading-placeholder">
+            <div class="loader"></div>
+            <p>ESTABLISHING TELEMETRY LINKS...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT SECTION: Global Metrics & Interactive Visualizations -->
+      <section class="operations-section">
+        
+        <!-- Global Intel Statistics Cards -->
+        <div class="global-stats-grid">
+          <div class="glass-panel stat-card glow-cyan-hover">
+            <div class="stat-icon-wrapper cyan">
+              <i data-lucide="database"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-label">TOTAL DATASET</span>
+              <h3 id="global-victims-total">32,842</h3>
+              <span class="stat-sub">Aggregated victims</span>
+            </div>
+          </div>
+          
+          <div class="glass-panel stat-card glow-amber-hover">
+            <div class="stat-icon-wrapper amber">
+              <i data-lucide="activity"></i>
+            </div>
+            <div class="stat-details">
+              <span class="stat-label">ACTIVE SENSORS</span>
+              <h3>5 / 5</h3>
+              <span class="stat-sub">Nodes operational</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Threat Trend Chart Panel -->
+        <div class="glass-panel chart-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <i data-lucide="trending-up" class="panel-icon text-cyan"></i>
+              <h3>INTEL SYNC TIMELINE</h3>
+            </div>
+            <div class="chart-legend">
+              <span class="legend-item"><span class="legend-dot bg-cyan"></span> Ransomware</span>
+              <span class="legend-item"><span class="legend-dot bg-amber"></span> Infostealer</span>
+              <span class="legend-item"><span class="legend-dot bg-green"></span> Articles Ingested</span>
+              <span class="legend-item"><span class="legend-dot bg-red"></span> Conflict Intel</span>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="threatTrendChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Cyber Terminal Console -->
+        <div class="glass-panel terminal-panel">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+            </div>
+            <div class="terminal-title">CTI_OPS_CONSOLE.SH</div>
+            <div class="terminal-actions">
+              <i data-lucide="terminal" class="terminal-act-icon"></i>
+            </div>
+          </div>
+          <div class="terminal-body" id="terminal-body">
+            <!-- Simulated logs print here -->
+          </div>
+        </div>
+
+      </section>
+      
+    </main>
+
+    <!-- Footer Status Area -->
+    <footer class="hud-footer">
+      <div class="footer-left">
+        <span class="console-prefix">C:\IntelHub></span>
+        <span class="typing-text">PORTAL OPERATIONAL // SECURITY PROTOCOL ENFORCED // NO COMPROMISE DETECTED</span>
+      </div>
+      <div class="footer-right">
+        <span>DEV_STATUS: <span class="text-green">STABLE</span></span>
+        <span>VERSION: <span class="text-cyan">3.0.0</span></span>
+      </div>
+    </footer>
+    
+  </div>
+
+  <!-- App Configuration & Fallback Data -->
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  
+  <!-- Core Application Script -->
+  <script src="js/app.js"></script>
+</body>
+</html>
